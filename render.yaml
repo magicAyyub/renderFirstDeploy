@@ -1,0 +1,19 @@
+services:
+  - name: nodejs-web-service
+    type: web
+    env: node
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    plan: free
+    region: Frankfurt
+    repo: https://github.com/magicAyyub/renderFirstDeploy.git
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nodejs-database
+          property: connectionString
+
+databases:
+  - name: nodejs-database
+    plan: free
+    region: Frankfurt
